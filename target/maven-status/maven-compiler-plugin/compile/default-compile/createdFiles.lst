@@ -1,0 +1,8 @@
+proyecto\back_duoc_consumer\Repository\AlertaMedicaRepository.class
+proyecto\back_duoc_consumer\Config\RabbitMQConfig.class
+proyecto\back_duoc_consumer\Model\AlertaMedica.class
+proyecto\back_duoc_consumer\Repository\AlertaGraveRepository.class
+proyecto\back_duoc_consumer\BackDuocConsumerApplication.class
+proyecto\back_duoc_consumer\Service\AlertaMedicaService.class
+proyecto\back_duoc_consumer\Listener\RabbitMQListener.class
+proyecto\back_duoc_consumer\Model\AlertaGrave.class
