@@ -1,24 +1,12 @@
 services:
-  rabbitmq:
-    image: rabbitmq:management
-    container_name: rabbitmq
-    ports:
-      - "5672:5672" # Puerto para comunicación con RabbitMQ
-      - "15672:15672" # Puerto para la interfaz de administración
-    environment:
-      RABBITMQ_DEFAULT_USER: guest
-      RABBITMQ_DEFAULT_PASS: guest
-    volumes:
-      - rabbitmq_data:/var/lib/rabbitmq
-    networks:
-      - backend-network
-
   back_duoc_consumer:
     image: pabloperezarcos/back_duoc_consumer:latest
     container_name: back_duoc_consumer
     build:
       context: .
       dockerfile: Dockerfile
+    ports:
+      - "8081:8081"
     environment:
       SPRING_DATASOURCE_URL: jdbc:oracle:thin:@backduoccloud_high?TNS_ADMIN=/app/wallet
       SPRING_DATASOURCE_USERNAME: ADMIN
@@ -29,15 +17,10 @@ services:
       SPRING_RABBITMQ_PORT: 5672
       SPRING_RABBITMQ_USERNAME: guest
       SPRING_RABBITMQ_PASSWORD: guest
-    depends_on:
-      - rabbitmq
+    restart: always
     networks:
-      - backend-network
-
-volumes:
-  rabbitmq_data:
-    driver: local
+      - sumativa_duoc
 
 networks:
-  backend-network:
-    driver: bridge
+  sumativa_duoc:
+    external: true
